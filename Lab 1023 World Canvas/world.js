@@ -29,7 +29,7 @@ function World() {
   window.addEventListener("keypress", function (event) {
     switch (event.code) {
       case "KeyW":
-          world.cnvMainLoc.y += 20;
+        world.cnvMainLoc.y += 20;
         break;
       case "KeyS":
           world.cnvMainLoc.y -= 20;
@@ -77,15 +77,8 @@ World.prototype.run = function () {
 
   // save the main context
   this.ctxMain.save();
-  // draw the bounds of the world in cnvMain
-  // Add axis in the main Canvas
-  this.ctxMain.strokeStyle = "rgba(240, 52, 52, 1)";
-  this.ctxMain.moveTo(0, this.dims.top);
-  this.ctxMain.lineTo(0, this.dims.bottom);
-  this.ctxMain.stroke();
-  this.ctxMain.moveTo(this.dims.left, 0);
-  this.ctxMain.lineTo(this.dims.right, 0);
-  this.ctxMain.stroke();
+ 
+  
   //draw x and y axes on miniMap
   // scale cnvMini - contain the entire world (scaleX, and scaleY)
   this.ctxMini.save();

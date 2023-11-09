@@ -12,7 +12,8 @@ let snakes = [];
 function init() {
     canvas = document.getElementById("cnv");
     context = canvas.getContext("2d");
-    loadSnakes(7);
+    loadSnakes(1);
+    loadPlanet();
     random_rgba();
     animate();      // kick off the animation
 }
@@ -23,6 +24,7 @@ function animate() {
     context.fillStyle = "rgba(0, 0, 0, 1)"
     context.fillRect(0, 0, canvas.width, canvas.height);
     runSnakes();   // run bubbles
+    runPlanet();   // run bubbles
     requestAnimationFrame(animate); // next cycle
 }
 
@@ -35,8 +37,8 @@ function loadSnakes(n) {
     for (let i = 0; i < n; i++) {
         let x = Math.random() * canvas.width;
         let y = Math.random() * canvas.height;
-        let col = "rgba(240, 24, 30, 1)";
-      //  let col = random_rgba();
+        let col = "rgba(0, 0, 255, 1)";
+        //  let col = random_rgba();
         let acc = new JSVector(0, 0);
         let loc = new JSVector(x, y)
         let vel = new JSVector(Math.random() * 2 - 1, Math.random() * 2 - 1);
@@ -51,5 +53,24 @@ function runSnakes() {
     for (let i = 0; i < snakes.length; i++) {
         snakes[i].run();
     }
+}
+
+function loadPlanet() {
+   
+    let x = Math.random() * canvas.width;
+    let y = Math.random() * canvas.height;
+   let col = "rgba(0, 255, 0, 255)";
+    let acc = new JSVector(0, 0);
+    let loc = new JSVector(x, y)
+    let vel = new JSVector(Math.random() * 2 - 1, Math.random() * 2 - 1);
+    let diam = 15;
+  planet = new Planet(x, y, col,acc, loc, vel, diam);
+}
+
+
+
+// move the circle to a new location
+function runPlanet() {
+planet.run();
 }
 
