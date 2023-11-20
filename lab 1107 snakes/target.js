@@ -1,5 +1,5 @@
-//  Bubble constructor function +++++++++++++++++++++++++++++
-function Planet(x, y, col, acc, loc, vel, diam) {
+
+function Target(x, y, col, acc, loc, vel, diam) {
 
     this.col = col;
     this.acc = acc;
@@ -10,16 +10,16 @@ function Planet(x, y, col, acc, loc, vel, diam) {
     this.diam = diam;
   }
   
-  //  placing methods in the prototype (every ball shares functions)
-  Planet.prototype.run = function () {
+  
+ Target.prototype.run = function () {
     this.update();
     this.render();
     this.checkEdges();
   
   }
   
-  // renders a bubble to the canvas
-  Planet.prototype.render = function () {
+ 
+ Target.prototype.render = function () {
   
     context.strokeStyle = this.col;
     context.fillStyle = this.col;
@@ -30,12 +30,12 @@ function Planet(x, y, col, acc, loc, vel, diam) {
   
   }
   
-  //  update bubble every animation frame
-  Planet.prototype.update = function () {
   
-         let dist = this.loc.distance(snakes.loc);
+  Target.prototype.update = function () {
+  
+         let dist = this.loc.distance(snake.loc);
       if (dist < 300) {
-          this.acc = JSVector.subGetNew(this.loc, snakes.loc);
+          this.acc = JSVector.subGetNew(this.loc, snake.loc);
           this.acc.normalize();
           this.acc.multiply(-0.55);
           this.vel.add(this.acc);
@@ -45,25 +45,28 @@ function Planet(x, y, col, acc, loc, vel, diam) {
         if(dist < 100) {
           this.loc.x = Math.random() * (canvas.width -1)+1;
           this.loc.y = Math.random() * (canvas.height -1)+1;
-      // this.vel = new JSVector(0, 0);
-      //  this.acc = new JSVector(0, 0);
+    
         }
   
   }
-  
-  Planet.prototype.checkEdges = function(){
+   
+  Target.prototype.checkEdges = function(){
     
     if (this.loc.x < 0) {
-      this.loc.x = canvas.width - 5;
+        this.loc.x = Math.random() * (canvas.width -1)+1;
+        this.loc.y = Math.random() * (canvas.height -1)+1;
     }
     if (this.loc.x > canvas.width - 1) {
-      this.loc.x = 5;
+        this.loc.x = Math.random() * (canvas.width -1)+1;
+        this.loc.y = Math.random() * (canvas.height -1)+1;
     }
     if (this.loc.y < 0) {
-      this.loc.y = canvas.height - 5;
+        this.loc.x = Math.random() * (canvas.width -1)+1;
+        this.loc.y = Math.random() * (canvas.height -1)+1;
     }
     if (this.loc.y > canvas.height - 1) {
-      this.loc.y = 5
+        this.loc.x = Math.random() * (canvas.width -1)+1;
+        this.loc.y = Math.random() * (canvas.height -1)+1;
     }
   }
   
